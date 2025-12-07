@@ -7,3 +7,4 @@
 .animate-fadeIn { animation: slideUp 0.4s ease-out; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.hidden { display: none; }
