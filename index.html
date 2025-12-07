@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RemitZim</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-slate-50 font-sans text-slate-900 flex justify-center">
+        <!-- Mobile Container -->
+        <div class="w-full max-w-md bg-white min-h-screen shadow-2xl relative flex flex-col">
+            <!-- AUTHENTICATION VIEW -->
+            <div id="auth-view" class="flex flex-col items-center justify-center h-screen p-8 bg-gradient-to-br from-slate-900 to-slate-800 text-white animate-fadeIn">
+                <div class="w-24 h-24 bg-emerald-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20">
+                    <span class="text-4xl font-bold">R</span>
+                </div>
+                <h1 class="text-3xl font-bold mb-2">RemitZim</h1>
+                <p class="text-slate-400 mb-10 text-center">Fast, secure transfers to Zimbabwe & Africa.</p>
+                <div class="w-full space-y-4">
+                    <input type="email" placeholder="Email Address" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" value="user@example.com">
+                    <input type="password" placeholder="Password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" value="password123">
+                    <button id="sign-in-btn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-900/20 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed">
+                        Sign In
+                    </button>
+                </div>
+                <div class="mt-8 text-sm text-slate-400">
+                    <span class="opacity-70">Don't have an account?</span> <button class="text-emerald-400 font-bold hover:underline">Sign Up</button>
+                </div>
+            </div>
+            <!-- MAIN APP VIEW -->
+            <div id="main-app-view" class="hidden flex flex-col w-full">
+                <!-- Top Navigation -->
+                <div id="top-nav" class="px-6 py-4 bg-white/80 backdrop-blur-md sticky top-0 z-20 flex justify-between items-center border-b border-slate-100">
+                    <!-- Top nav content will be rendered here -->
+                </div>
+                <!-- MAIN CONTENT AREA -->
+                <main id="main-content" class="flex-1 p-6 overflow-y-auto pb-24 bg-slate-50">
+                    <!-- Main content will be rendered here -->
+                </main>
+                <!-- Bottom Navigation Bar -->
+                <div id="bottom-nav" class="bg-white border-t border-slate-100 px-6 py-2 pb-6 sticky bottom-0 z-10 flex justify-between items-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+                    <!-- Bottom nav content will be rendered here -->
+                </div>
+            </div>
+            <!-- Side Menu Overlay -->
+            <div id="side-menu-overlay" class="absolute inset-0 z-50 flex hidden">
+                <div class="w-64 bg-slate-900 text-white h-full p-6 animate-slideIn flex flex-col">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="font-bold text-xl">Menu</div>
+                        <button id="close-menu-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        </button>
+                    </div>
+                    <!-- User Quick Info -->
+                    <div class="flex items-center gap-3 mb-8 p-3 bg-white/5 rounded-xl">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-lg">J</div>
+                        <div>
+                            <div class="font-bold text-sm">John Doe</div>
+                            <div class="text-xs text-slate-400">ID Verified</div>
+                        </div>
+                    </div>
+                    <nav class="space-y-2 flex-1">
+                        <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            Profile & KYC
+                        </button>
+                        <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="payment_methods">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                            Payment Methods
+                        </button>
+                        <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="security">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                            Security
+                        </button>
+                        <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="notifications">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                            Notifications
+                        </button>
+                    </nav>
+                    <div class="h-px bg-white/10 my-4"></div>
+                    <button id="sign-out-btn" class="flex items-center gap-3 w-full p-3 hover:bg-red-500/20 text-red-400 rounded-xl transition-colors text-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                        Sign Out
+                    </button>
+                </div>
+                <div class="flex-1 bg-black/50 backdrop-blur-sm" id="side-menu-bg"></div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
