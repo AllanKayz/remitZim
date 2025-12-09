@@ -16,7 +16,7 @@
         grid-template-columns: 300px 1fr;
     }
 
-    #auth-view {
+    #auth-view, #signup-view, #add-payment-method-view {
         grid-column: 1 / -1;
     }
 

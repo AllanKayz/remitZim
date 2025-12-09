@@ -211,18 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${renderViewHeader('Add Bank Account', 'add-payment-method')}
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
                     <div>
-                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Account Holder Name</label>
-                        <input id="bank-name" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="e.g. John Doe">
+                        <label for="bank-name" class="text-sm font-semibold text-slate-600 mb-2 block">Account Holder Name</label>
+                        <input id="bank-name" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-primary focus:outline-none py-2" placeholder="e.g. John Doe">
                     </div>
                     <div>
-                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Account Number</label>
-                        <input id="bank-account-number" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="**** **** **** ****">
+                        <label for="bank-account-number" class="text-sm font-semibold text-slate-600 mb-2 block">Account Number</label>
+                        <input id="bank-account-number" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-primary focus:outline-none py-2" placeholder="**** **** **** ****">
                     </div>
                     <div>
-                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Sort Code</label>
-                        <input id="bank-sort-code" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="**-**-**">
+                        <label for="bank-sort-code" class="text-sm font-semibold text-slate-600 mb-2 block">Sort Code</label>
+                        <input id="bank-sort-code" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-primary focus:outline-none py-2" placeholder="**-**-**">
                     </div>
-                    <button id="add-bank-btn" class="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-emerald-200 disabled:opacity-70">
+                    <button id="add-bank-btn" class="w-full py-4 bg-primary text-white rounded-xl font-bold text-lg shadow-lg shadow-emerald-200 disabled:opacity-70">
                         Add Bank Account
                     </button>
                 </div>
@@ -266,24 +266,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${renderViewHeader('Add Card', 'add-payment-method')}
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
                     <div>
-                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Card Number</label>
-                        <input id="card-number" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="**** **** **** ****">
+                        <label for="card-number" class="text-sm font-semibold text-slate-600 mb-2 block">Card Number</label>
+                        <input id="card-number" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-primary focus:outline-none py-2" placeholder="**** **** **** ****">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="text-sm font-semibold text-slate-600 mb-2 block">Expiry Date</label>
-                            <input id="card-expiry" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="MM/YY">
+                            <label for="card-expiry" class="text-sm font-semibold text-slate-600 mb-2 block">Expiry Date</label>
+                            <input id="card-expiry" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-primary focus:outline-none py-2" placeholder="MM/YY">
                         </div>
                         <div>
-                            <label class="text-sm font-semibold text-slate-600 mb-2 block">CVV</label>
-                            <input id="card-cvv" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="***">
+                            <label for="card-cvv" class="text-sm font-semibold text-slate-600 mb-2 block">CVV</label>
+                            <input id="card-cvv" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-primary focus:outline-none py-2" placeholder="***">
                         </div>
                     </div>
                     <div>
-                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Cardholder Name</label>
-                        <input id="card-name" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="e.g. John Doe">
+                        <label for="card-name" class="text-sm font-semibold text-slate-600 mb-2 block">Cardholder Name</label>
+                        <input id="card-name" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-primary focus:outline-none py-2" placeholder="e.g. John Doe">
                     </div>
-                    <button id="add-card-btn" class="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-emerald-200 disabled:opacity-70">
+                    <button id="add-card-btn" class="w-full py-4 bg-primary text-white rounded-xl font-bold text-lg shadow-lg shadow-emerald-200 disabled:opacity-70">
                         Add Card
                     </button>
                 </div>
@@ -325,22 +325,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderSignup(container) {
         container.innerHTML = `
-            <div class="flex flex-col items-center justify-center h-screen p-8 bg-gradient-to-br from-slate-900 to-slate-800 text-white animate-fadeIn">
-                <div class="w-24 h-24 bg-emerald-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20">
+            <div class="flex flex-col items-center justify-center h-screen p-8 bg-gradient-to-br from-secondary to-slate-900 text-white animate-fadeIn">
+                <div class="w-24 h-24 bg-primary rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20">
                     <span class="text-4xl font-bold">R</span>
                 </div>
                 <h1 class="text-3xl font-bold mb-2">Create Account</h1>
                 <p class="text-slate-400 mb-10 text-center">Join RemitZim and start sending money with ease.</p>
                 <div class="w-full space-y-4">
-                    <input type="text" placeholder="Full Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors">
-                    <input type="email" placeholder="Email Address" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors">
-                    <input type="password" placeholder="Password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors">
-                    <button id="sign-up-btn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-900/20 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed">
+                    <input id="signup-full-name" type="text" placeholder="Full Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-primary transition-colors">
+                    <input id="signup-email" type="email" placeholder="Email Address" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-primary transition-colors">
+                    <input id="signup-password" type="password" placeholder="Password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-primary transition-colors">
+                    <button id="sign-up-btn" class="w-full bg-primary hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-900/20 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed">
                         Sign Up
                     </button>
                 </div>
                 <div class="mt-8 text-sm text-slate-400">
-                    <span class="opacity-70">Already have an account?</span> <button id="sign-in-link" class="text-emerald-400 font-bold hover:underline">Sign In</button>
+                    <span class="opacity-70">Already have an account?</span> <button id="sign-in-link" class="text-primary font-bold hover:underline">Sign In</button>
                 </div>
             </div>
         `;
@@ -395,10 +395,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function showNotification(message, type = 'info') {
         const container = document.getElementById('notification-container');
         const notification = document.createElement('div');
-        notification.className = `p-4 mb-4 text-sm rounded-lg ${
+        notification.className = `flex items-center p-4 mb-4 text-sm rounded-lg ${
             type === 'error' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
         }`;
-        notification.textContent = message;
+        const icon = type === 'error' ? `
+            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        ` : `
+            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        `;
+        notification.innerHTML = `${icon}<div>${message}</div>`;
         container.appendChild(notification);
         setTimeout(() => {
             notification.remove();
@@ -410,19 +415,19 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = `
             <div class="space-y-6 animate-fadeIn">
                 <!-- Balance Card -->
-                <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 text-white shadow-xl shadow-slate-200 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                <div class="bg-gradient-to-br from-secondary to-slate-900 rounded-3xl p-6 text-white shadow-xl shadow-slate-200 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
                     <div class="flex justify-between items-start mb-6 relative z-10">
                         <div>
                             <div class="text-slate-400 text-sm font-medium mb-1">Total Balance</div>
                             <div class="text-3xl font-bold">£ ${state.walletBalance.toFixed(2)}</div>
                         </div>
                         <div id="wallet-btn" class="p-2 bg-white/10 rounded-lg backdrop-blur-sm cursor-pointer hover:bg-white/20 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
                         </div>
                     </div>
                     <div class="flex gap-3 relative z-10">
-                        <button id="send-btn" class="flex-1 bg-emerald-500 hover:bg-emerald-400 text-white py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
+                        <button id="send-btn" class="flex-1 bg-primary hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                             Send
                         </button>

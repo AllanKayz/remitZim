@@ -5,7 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RemitZim</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #059669; /* Emerald 600 */
+            --primary-light: #d1fae5; /* Emerald 100 */
+            --secondary: #1e293b; /* Slate 800 */
+            --background: #f8fafc; /* Slate 50 */
+            --text-primary: #0f172a; /* Slate 900 */
+            --text-secondary: #64748b; /* Slate 500 */
+            --border: #e2e8f0; /* Slate 200 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+        }
+    </style>
 </head>
 <body>
     <div id="app" class="min-h-screen bg-slate-50 font-sans text-slate-900 flex justify-center">
@@ -50,7 +69,7 @@
             </div>
             <!-- Side Menu Overlay -->
             <div id="side-menu-overlay" class="absolute inset-0 z-50 flex hidden">
-                <div class="w-64 bg-slate-900 text-white h-full p-6 animate-slideIn flex flex-col">
+                <div class="w-64 bg-secondary text-white h-full p-6 animate-slideIn flex flex-col">
                     <div class="flex justify-between items-center mb-8">
                         <div class="font-bold text-xl">Menu</div>
                         <button id="close-menu-btn">
@@ -59,7 +78,7 @@
                     </div>
                     <!-- User Quick Info -->
                     <div class="flex items-center gap-3 mb-8 p-3 bg-white/5 rounded-xl">
-                        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-lg">J</div>
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-lg">J</div>
                         <div>
                             <div class="font-bold text-sm">John Doe</div>
                             <div class="text-xs text-slate-400">ID Verified</div>
@@ -67,19 +86,19 @@
                     </div>
                     <nav class="space-y-2 flex-1">
                         <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="profile">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             Profile & KYC
                         </button>
                         <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="payment_methods">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                             Payment Methods
                         </button>
                         <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="security">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
                             Security
                         </button>
                         <button class="nav-btn flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-xl transition-colors text-left" data-view="notifications">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
                             Notifications
                         </button>
                     </nav>
