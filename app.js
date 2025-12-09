@@ -30,10 +30,11 @@ const BENEFICIARIES = [
   { id: 3, name: "Kudzanai Dube", mobile: "+263 77 555 9999", provider: "CABS" },
 ];
 
+// Application state
 const state = {
-    view: 'dashboard',
-    sendStep: 1,
-    isLoading: false,
+    view: 'dashboard', // Current view
+    sendStep: 1, // Current step in the send money flow
+    isLoading: false, // Loading state
     isMenuOpen: false,
     isAuthenticated: false,
     walletBalance: 1250.00,
@@ -65,6 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const sideMenuBg = document.getElementById('side-menu-bg');
     const authView = document.getElementById('auth-view');
     const mainAppView = document.getElementById('main-app-view');
+    const signupView = document.getElementById('signup-view');
+    const signUpLink = document.getElementById('sign-up-link');
+
+    signUpLink.addEventListener('click', () => {
+        state.view = 'signup';
+        authView.classList.add('hidden');
+        signupView.classList.remove('hidden');
+        render();
+    });
 
     signInBtn.addEventListener('click', () => {
         state.isLoading = true;
@@ -99,17 +109,30 @@ document.addEventListener('DOMContentLoaded', () => {
         sideMenuOverlay.classList.add('hidden');
     });
 
+    // Main render function
     function render() {
         renderTopNav();
         renderBottomNav();
         renderMainContent();
     }
 
+    // Render main content based on the current view
     function renderMainContent() {
         const mainContent = document.getElementById('main-content');
+        const signupView = document.getElementById('signup-view');
+        const addPaymentMethodView = document.getElementById('add-payment-method-view');
+        mainContent.innerHTML = '';
+        signupView.innerHTML = '';
+        addPaymentMethodView.innerHTML = '';
         switch (state.view) {
             case 'dashboard':
                 renderDashboard(mainContent);
+                break;
+            case 'signup':
+                renderSignup(signupView);
+                break;
+            case 'add-payment-method':
+                renderAddPaymentMethod(addPaymentMethodView);
                 break;
             case 'history':
                 renderHistory(mainContent);
@@ -141,6 +164,214 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function renderAddPaymentMethod(container) {
+        container.innerHTML = `
+            <div class="animate-slideIn p-6">
+                ${renderViewHeader('Add Payment Method', 'payment_methods')}
+                <div class="space-y-4">
+                    <button id="add-card-option-btn" class="w-full p-4 bg-white rounded-xl border-2 border-slate-100 hover:border-emerald-500 transition-colors flex items-center gap-4">
+                        <div class="p-3 rounded-full bg-slate-100 text-slate-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-900">Credit/Debit Card</div>
+                            <div class="text-xs text-slate-500">Visa, Mastercard, etc.</div>
+                        </div>
+                    </button>
+                    <button id="add-bank-option-btn" class="w-full p-4 bg-white rounded-xl border-2 border-slate-100 hover:border-emerald-500 transition-colors flex items-center gap-4">
+                        <div class="p-3 rounded-full bg-slate-100 text-slate-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V3"/><path d="M5 12H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3"/><path d="M19 12h3a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3"/><path d="M3 21h18"/></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-900">Bank Account</div>
+                            <div class="text-xs text-slate-500">Add your bank account</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('back-btn').addEventListener('click', () => {
+            state.view = 'payment_methods';
+            render();
+        });
+
+        document.getElementById('add-card-option-btn').addEventListener('click', () => {
+            renderAddCardForm(container);
+        });
+
+        document.getElementById('add-bank-option-btn').addEventListener('click', () => {
+            renderAddBankForm(container);
+        });
+    }
+
+    function renderAddBankForm(container) {
+        container.innerHTML = `
+            <div class="animate-slideIn p-6">
+                ${renderViewHeader('Add Bank Account', 'add-payment-method')}
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
+                    <div>
+                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Account Holder Name</label>
+                        <input id="bank-name" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="e.g. John Doe">
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Account Number</label>
+                        <input id="bank-account-number" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="**** **** **** ****">
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Sort Code</label>
+                        <input id="bank-sort-code" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="**-**-**">
+                    </div>
+                    <button id="add-bank-btn" class="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-emerald-200 disabled:opacity-70">
+                        Add Bank Account
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('back-btn').addEventListener('click', () => {
+            state.view = 'add-payment-method';
+            render();
+        });
+
+        document.getElementById('add-bank-btn').addEventListener('click', () => {
+            const accountHolderName = document.getElementById('bank-name').value;
+            const accountNumber = document.getElementById('bank-account-number').value;
+            const sortCode = document.getElementById('bank-sort-code').value;
+
+            if (accountHolderName && accountNumber && sortCode) {
+                // Add bank logic here
+                state.paymentMethods.push({
+                    id: Date.now(),
+                    type: 'bank',
+                    name: 'New Bank Account',
+                    details: `**** ${accountNumber.slice(-4)}`,
+                });
+
+                state.view = 'payment_methods';
+                const mainContent = document.getElementById('main-content');
+                const addPaymentMethodView = document.getElementById('add-payment-method-view');
+                mainContent.classList.remove('hidden');
+                addPaymentMethodView.classList.add('hidden');
+                render();
+            } else {
+                showNotification('Please fill in all fields.', 'error');
+            }
+        });
+    }
+
+    function renderAddCardForm(container) {
+        container.innerHTML = `
+            <div class="animate-slideIn p-6">
+                ${renderViewHeader('Add Card', 'add-payment-method')}
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
+                    <div>
+                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Card Number</label>
+                        <input id="card-number" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="**** **** **** ****">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-sm font-semibold text-slate-600 mb-2 block">Expiry Date</label>
+                            <input id="card-expiry" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="MM/YY">
+                        </div>
+                        <div>
+                            <label class="text-sm font-semibold text-slate-600 mb-2 block">CVV</label>
+                            <input id="card-cvv" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="***">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-slate-600 mb-2 block">Cardholder Name</label>
+                        <input id="card-name" type="text" class="w-full text-lg font-medium text-slate-900 border-b-2 border-slate-200 focus:border-emerald-500 focus:outline-none py-2" placeholder="e.g. John Doe">
+                    </div>
+                    <button id="add-card-btn" class="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-emerald-200 disabled:opacity-70">
+                        Add Card
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('back-btn').addEventListener('click', () => {
+            state.view = 'add-payment-method';
+            render();
+        });
+
+        document.getElementById('add-card-btn').addEventListener('click', () => {
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('card-expiry').value;
+            const cvv = document.getElementById('card-cvv').value;
+            const cardholderName = document.getElementById('card-name').value;
+
+            if (cardNumber && expiryDate && cvv && cardholderName) {
+                // Add card logic here
+                state.paymentMethods.push({
+                    id: Date.now(),
+                    type: 'card',
+                    name: 'New Card',
+                    details: `**** ${cardNumber.slice(-4)}`,
+                    expiry: expiryDate,
+                });
+
+                state.view = 'payment_methods';
+                const mainContent = document.getElementById('main-content');
+                const addPaymentMethodView = document.getElementById('add-payment-method-view');
+                mainContent.classList.remove('hidden');
+                addPaymentMethodView.classList.add('hidden');
+                render();
+            } else {
+                showNotification('Please fill in all fields.', 'error');
+            }
+        });
+    }
+
+    function renderSignup(container) {
+        container.innerHTML = `
+            <div class="flex flex-col items-center justify-center h-screen p-8 bg-gradient-to-br from-slate-900 to-slate-800 text-white animate-fadeIn">
+                <div class="w-24 h-24 bg-emerald-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20">
+                    <span class="text-4xl font-bold">R</span>
+                </div>
+                <h1 class="text-3xl font-bold mb-2">Create Account</h1>
+                <p class="text-slate-400 mb-10 text-center">Join RemitZim and start sending money with ease.</p>
+                <div class="w-full space-y-4">
+                    <input type="text" placeholder="Full Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors">
+                    <input type="email" placeholder="Email Address" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors">
+                    <input type="password" placeholder="Password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors">
+                    <button id="sign-up-btn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-900/20 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed">
+                        Sign Up
+                    </button>
+                </div>
+                <div class="mt-8 text-sm text-slate-400">
+                    <span class="opacity-70">Already have an account?</span> <button id="sign-in-link" class="text-emerald-400 font-bold hover:underline">Sign In</button>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('sign-in-link').addEventListener('click', () => {
+            state.view = 'auth';
+            const signupView = document.getElementById('signup-view');
+            const authView = document.getElementById('auth-view');
+            signupView.classList.add('hidden');
+            authView.classList.remove('hidden');
+        });
+
+        document.getElementById('sign-up-btn').addEventListener('click', () => {
+            const fullName = document.getElementById('signup-full-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            if (fullName && email && password) {
+                // Add sign up logic here
+                state.isAuthenticated = true;
+                const signupView = document.getElementById('signup-view');
+                const mainAppView = document.getElementById('main-app-view');
+                signupView.classList.add('hidden');
+                mainAppView.classList.remove('hidden');
+                render();
+            } else {
+                showNotification('Please fill in all fields.', 'error');
+            }
+        });
+    }
+
     document.querySelectorAll('.nav-btn').forEach(button => {
         button.addEventListener('click', (e) => {
             state.view = e.currentTarget.dataset.view;
@@ -149,6 +380,30 @@ document.addEventListener('DOMContentLoaded', () => {
             render();
         });
     });
+
+    function renderViewHeader(title, backView) {
+        return `
+            <div class="flex items-center gap-2 mb-6">
+                <button id="back-btn" class="p-2 hover:bg-slate-100 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                </button>
+                <h2 class="text-xl font-bold text-slate-800">${title}</h2>
+            </div>
+        `;
+    }
+
+    function showNotification(message, type = 'info') {
+        const container = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.className = `p-4 mb-4 text-sm rounded-lg ${
+            type === 'error' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+        }`;
+        notification.textContent = message;
+        container.appendChild(notification);
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
 
     function renderDashboard(container) {
         const recentTransactions = state.recentTransactions.slice(0, 3);
@@ -246,6 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('see-all-btn').addEventListener('click', () => { state.view = 'history'; render(); });
     }
 
+    // Render transaction history view
     function renderHistory(container) {
         const filteredTransactions = state.recentTransactions.filter(tx =>
             tx.recipient.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
@@ -434,6 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+    // Render wallet view
     function renderWallet(container) {
         container.innerHTML = `
             <div class="animate-slideIn space-y-6">
@@ -544,12 +801,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `).join('')}
                 </div>
-                <button class="w-full py-4 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-500 hover:text-emerald-600 transition-colors font-medium">
+                <button id="add-payment-method-btn" class="w-full py-4 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-500 hover:text-emerald-600 transition-colors font-medium">
                     + Add New Card or Bank
                 </button>
             </div>
         `;
         document.getElementById('back-to-dashboard-btn').addEventListener('click', () => { state.view = 'dashboard'; render(); });
+        document.getElementById('add-payment-method-btn').addEventListener('click', () => {
+            state.view = 'add-payment-method';
+            const mainContent = document.getElementById('main-content');
+            const addPaymentMethodView = document.getElementById('add-payment-method-view');
+            mainContent.classList.add('hidden');
+            addPaymentMethodView.classList.remove('hidden');
+            render();
+        });
     }
 
     function renderSecurity(container) {

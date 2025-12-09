@@ -9,8 +9,8 @@
 </head>
 <body>
     <div id="app" class="min-h-screen bg-slate-50 font-sans text-slate-900 flex justify-center">
-        <!-- Mobile Container -->
-        <div class="w-full max-w-md bg-white min-h-screen shadow-2xl relative flex flex-col">
+        <!-- Main Container -->
+        <div class="main-container w-full max-w-md bg-white min-h-screen shadow-2xl relative flex flex-col">
             <!-- AUTHENTICATION VIEW -->
             <div id="auth-view" class="flex flex-col items-center justify-center h-screen p-8 bg-gradient-to-br from-slate-900 to-slate-800 text-white animate-fadeIn">
                 <div class="w-24 h-24 bg-emerald-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20">
@@ -26,9 +26,13 @@
                     </button>
                 </div>
                 <div class="mt-8 text-sm text-slate-400">
-                    <span class="opacity-70">Don't have an account?</span> <button class="text-emerald-400 font-bold hover:underline">Sign Up</button>
+                    <span class="opacity-70">Don't have an account?</span> <button id="sign-up-link" class="text-emerald-400 font-bold hover:underline">Sign Up</button>
                 </div>
             </div>
+            <!-- SIGN UP VIEW -->
+            <div id="signup-view" class="hidden"></div>
+            <!-- ADD PAYMENT METHOD VIEW -->
+            <div id="add-payment-method-view" class="hidden"></div>
             <!-- MAIN APP VIEW -->
             <div id="main-app-view" class="hidden flex flex-col w-full">
                 <!-- Top Navigation -->
@@ -88,6 +92,7 @@
                 <div class="flex-1 bg-black/50 backdrop-blur-sm" id="side-menu-bg"></div>
             </div>
         </div>
+        <div id="notification-container" class="fixed top-5 right-5 z-50"></div>
     </div>
     <script src="app.js"></script>
 </body>
